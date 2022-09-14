@@ -5,16 +5,25 @@ import NotFound from '@/modules/shared/pages/NotFound'
 // import AboutPage from '@/modules/pokemon/pages/AboutPage'
 
 const routes = [
+  // Redireccion
+  {
+    path: '/',
+    redirect: '/home'
+  },
   { 
-    path: '/', 
+    path: '/home', 
+    name: 'home',
     component: () => import( /*webpackChunkName: "ListPage"*/ '../modules/pokemon/pages/ListPage')  
   },
   { 
     path: '/about', 
+    name: 'home',
+    name: 'about',
     component: () => import( /*webpackChunkName: "AboutPage"*/ '../modules/pokemon/pages/AboutPage') 
   },
   { 
-    path: '/:id', 
+    path: '/pokemonid/:id', 
+    name: 'pokemon-id',
     component: () => import( /*webpackChunkName: "PokemonPage"*/ '../modules/pokemon/pages/PokemonPage'),
     props: ( route ) => {
       const id = Number( route.params.id )
@@ -23,7 +32,7 @@ const routes = [
   },
   { 
     path: '/:pathMatch(.*)*', 
-    component: NotFound 
+    component: NotFound ,
   },
 ]
 
